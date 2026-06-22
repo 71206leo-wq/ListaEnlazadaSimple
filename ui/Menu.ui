@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuEstructuras">
+    <property name="title">
+     <string>Estructuras</string>
+    </property>
+    <widget class="QMenu" name="menuLineales">
+     <property name="title">
+      <string>Lineales</string>
+     </property>
+     <addaction name="actionLista_Enlazada"/>
+    </widget>
+    <addaction name="menuLineales"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <addaction name="menuEstructuras"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSalir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionLista_Enlazada">
+   <property name="text">
+    <string>Lista Enlazada</string>
+   </property>
+  </action>
+  <action name="action_1_Insertar_al_principio">
+   <property name="text">
+    <string>(&quot;1. Insertar al principio&quot;)</string>
+   </property>
+  </action>
+  <action name="action_2_Insertar_al_final">
+   <property name="text">
+    <string>(&quot;2. Insertar al final&quot;)</string>
+   </property>
+  </action>
+  <action name="action_3_Buscar">
+   <property name="text">
+    <string>(&quot;3. Buscar&quot;)</string>
+   </property>
+  </action>
+  <action name="action_4_Imprimir">
+   <property name="text">
+    <string>(&quot;4. Imprimir&quot;)</string>
+   </property>
+  </action>
+  <action name="action_5_Eliminar_al_principio">
+   <property name="text">
+    <string>(&quot;5. Eliminar al principio&quot;)</string>
+   </property>
+  </action>
+  <action name="action_6_Eliminar_al_final">
+   <property name="text">
+    <string>(&quot;6. Eliminar al final&quot;)</string>
+   </property>
+  </action>
+  <action name="action_7_Salir">
+   <property name="text">
+    <string>(&quot;7. Salir&quot;)</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
