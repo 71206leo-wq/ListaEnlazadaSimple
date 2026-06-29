@@ -33,6 +33,7 @@
      </property>
      <addaction name="actionLista_Enlazada"/>
      <addaction name="actionStack"/>
+     <addaction name="actionAplicaciones"/>
     </widget>
     <addaction name="menuLineales"/>
     <addaction name="separator"/>
@@ -89,6 +90,11 @@
   <action name="actionStack">
    <property name="text">
     <string>Stack</string>
+   </property>
+  </action>
+  <action name="actionAplicaciones">
+   <property name="text">
+    <string>Aplicaciones</string>
    </property>
   </action>
  </widget>

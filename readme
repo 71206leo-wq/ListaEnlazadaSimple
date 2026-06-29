@@ -1,0 +1,64 @@
+# Algoritmo de Conversión: Infijo a Posfijo usando Pila (Stack)
+
+Este documento explica brevemente cómo funciona el algoritmo Shunting-yard simplificado para convertir una expresión matemática en formato **Infijo** (el que usamos los humanos, ej: `A + B`) a formato **Posfijo** o Notación Polaca Inversa (ej: `A B +`).
+
+---
+
+## 📌 El Rol de la Pila (Stack)
+
+En este algoritmo, **la pila tiene un único propósito: almacenar temporalmente los operadores y los paréntesis** que se van encontrando en la lectura de la expresión. 
+
+Los operandos (letras o números) nunca entran a la pila; se van directo al resultado final. La pila nos ayuda a "retener" los operadores hasta que sepamos, por reglas de precedencia, en qué orden exacto deben ejecutarse.
+
+---
+
+## ⚙️ Reglas del Algoritmo (Paso a Paso)
+
+El algoritmo lee la expresión infija de **izquierda a derecha**, analizando cada carácter (*token*) uno por uno bajo las siguientes condiciones:
+
+### 1. Si el token es un Operando (letras o números)
+* **Acción:** Se añade directamente al final de la cadena de resultado.
+
+### 2. Si el token es un Paréntesis de Apertura `(`
+* **Acción:** Se hace `push()` a la pila. Funciona como una "barrera" aislante para subexpresiones.
+
+### 3. Si el token es un Paréntesis de Cierre `)`
+* **Acción:** Se hace `pop()` a la pila de manera repetida y se añaden los elementos al resultado hasta que nos topemos con el paréntesis de apertura `(`. 
+* Al final, el `(` se saca de la pila con un `pop()` y se descarta (no va al resultado).
+
+### 4. Si el token es un Operador (`+`, `-`, `*`, `/`, `^`)
+* **Acción:** Antes de meterlo a la pila, revisamos qué hay en el tope (`top_of_stack()`). 
+* **Mientras** la pila no esté vacía y el operador que está en el tope tenga **mayor o igual prioridad (precedencia)** que nuestro operador actual, sacamos el operador de la pila con `pop()` y lo mandamos al resultado.
+* En cuanto la pila se vacíe o encontremos un operador con *menor* prioridad, dejamos de sacar elementos y hacemos `push()` de nuestro operador actual a la pila.
+
+### 5. Fin de la expresión
+* **Acción:** Una vez que terminamos de leer toda la cadena, vaciamos por completo la pila haciendo `pop()` a cada elemento restante y enviándolos al resultado.
+
+---
+
+## 📊 Tabla de Precedencia (Prioridad)
+
+Para que el algoritmo decida quién sale de la pila, se utiliza la jerarquía matemática estándar:
+
+| Operador | Prioridad |
+| :---: | :---: |
+| `^` (Potencia) | 3 (Máxima) |
+| `*` , `/` (Multiplicación y División) | 2 |
+| `+` , `-` (Suma y Resta) | 1 (Mínima) |
+
+---
+
+## 💡 Ejemplo Visual
+
+Expresión Infija de entrada: `A + B * C`
+
+1. **Lee `A`**: Es operando ➡️ **Resultado:** `A` | **Pila:** `[]`
+2. **Lee `+`**: Pila vacía, hace push ➡️ **Resultado:** `A` | **Pila:** `[+]`
+3. **Lee `B`**: Es operando ➡️ **Resultado:** `A B` | **Pila:** `[+]`
+4. **Lee `*`**: Compara con el tope (`+`). Como `*` tiene **mayor** prioridad que `+`, no saca nada. Hace push de `*` ➡️ **Resultado:** `A B` | **Pila:** `[+, *]`
+5. **Lee `C`**: Es operando ➡️ **Resultado:** `A B C` | **Pila:** `[+, *]`
+6. **Fin de la cadena**: Se vacía la pila de arriba a abajo.
+   * Sale `*` ➡️ **Resultado:** `A B C *`
+   * Sale `+` ➡️ **Resultado:** `A B C * +`
+
+**Resultado Final Posfijo:** `ABC*+`
