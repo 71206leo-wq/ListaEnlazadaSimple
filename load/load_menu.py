@@ -5,6 +5,7 @@ from load.load_stack import LoadStack
 from load.load_aplicaciones import LoadAplicaciones
 
 
+
 class LoadMenu(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -14,6 +15,8 @@ class LoadMenu(QMainWindow):
         self.actionSalir.triggered.connect(self.load_lista_enlazada)
         self.actionStack.triggered.connect(self.load_stack)
         self.actionAplicaciones.triggered.connect(self.load_aplicaciones)
+        
+        
 
     def load_lista_enlazada(self):
         lista_enlazada = LoadListaEnlazadaSimple()
@@ -27,3 +30,5 @@ class LoadMenu(QMainWindow):
         aplicaciones = LoadAplicaciones()
         aplicaciones.exec_()
         
+    
+    

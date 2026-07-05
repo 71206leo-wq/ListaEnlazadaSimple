@@ -62,3 +62,75 @@ Expresión Infija de entrada: `A + B * C`
    * Sale `+` ➡️ **Resultado:** `A B C * +`
 
 **Resultado Final Posfijo:** `ABC*+`
+
+# Explicación de Estructuras de Datos: Conversión y Evaluación de Expresiones Numéricas
+
+Este documento detalla el funcionamiento del proyecto enfocado en procesar expresiones aritméticas infijas, convertirlas a notación posfija (Notación Polaca Inversa) y evaluar su resultado numérico final utilizando la estructura de datos **Pila (Stack)**.
+
+---
+
+## 1. Conceptos Fundamentales
+
+El procesamiento computacional de expresiones se divide en dos fases críticas:
+* **Conversión Infija a Posfija:** Modifica una expresión estructurada convencionalmente (ej. `2 + 3 * 4`) a una secuencia lineal (ej. `234*+`), lo que optimiza su lectura secuencial al remover jerarquías explícitas basadas en paréntesis.
+* **Evaluación Posfija:** Procesa de forma directa la cadena posfija resultante, aplicando los operadores en el orden estricto que indica el flujo para devolver un único valor entero.
+
+---
+
+## 2. Diferenciación del Uso de la Pila en Ambos Procesos
+
+Aunque ambos componentes dependen directamente de métodos como `push()` y `pop()`, el propósito de almacenamiento de la pila cambia por completo según la fase:
+
+| Proceso / Algoritmo | ¿Qué almacena la Pila? | Propósito Principal |
+| :--- | :--- | :--- |
+| **Conversión Infija a Posfija** | Operadores (`+`, `-`, `*`, `/`, `^`) y Paréntesis `(` `)` | Regular la prioridad (precedencia) y organizar la posición final de los caracteres. |
+| **Evaluación Posfija** | Valores numéricos enteros (`int`) y resultados parciales | Retener temporalmente los números (operandos) hasta que aparezca un operador que los requiera. |
+
+---
+
+## 3. Algoritmo 1: Conversión de Infija a Posfija
+
+Al recorrer la cadena infija de izquierda a derecha token por token:
+1. **Si es un operando** (letra o número), se concatena directamente al resultado posfijo.
+2. **Si es un paréntesis de apertura `(`**, se añade a la pila mediante `push()`.
+3. **Si es un paréntesis de cierre `)`**, se extraen elementos de la pila con `pop()` y se añaden al resultado hasta encontrar el par `(`. El paréntesis de apertura se remueve sin agregarse al string de salida.
+4. **Si es un operador**, se vacían con `pop()` todos los operadores en el tope de la pila que tengan una jerarquía/precedencia **mayor o igual** al operador actual. Posteriormente, se hace `push()` del operador actual.
+5. Al finalizar el recorrido de la expresión, cualquier operador restante en la pila es vaciado (`pop()`) e integrado al string definitivo.
+
+---
+
+## 4. Algoritmo 2: Evaluación de la Expresión Posfija
+
+Al recorrer la expresión posfija (como `234*+`) secuencialmente de izquierda a derecha:
+1. **Si el carácter es un operando numérico**, se castea a tipo entero (`int(caracter)`) y se añade a la pila con un `push()`.
+2. **Si el carácter es un operador** (`+`, `-`, `*`, `/`):
+    * Se ejecuta un primer `pop()` para extraer el **segundo operando (B)**.
+    * Se ejecuta un segundo `pop()` para extraer el **primer operando (A)**.
+    * Se procesa la operación matemática en orden estricto: `Resultado = A operador B`.
+    * Se regresa el resultado parcial a la pila ejecutando un `push(Resultado)`.
+3. Al concluir la lectura de toda la cadena, el valor solitario remanente dentro de la pila representa el **resultado final numérico**.
+
+### Rastreo del Estado de la Pila con el ejemplo `234*+`:
+
+| Carácter Leído | Acción Realizada | Estado de la Pila (Tope a la derecha) |
+| :---: | :--- | :---: |
+| **2** | Detecta número $\rightarrow$ Apilar 2 | `[2]` |
+| **3** | Detecta número $\rightarrow$ Apilar 3 | `[2, 3]` |
+| **4** | Detecta número $\rightarrow$ Apilar 4 | `[2, 3, 4]` |
+| **\*** | Operador: saca B=4, saca A=3 $\rightarrow$ Calcula `3 * 4 = 12` $\rightarrow$ Apilar 12 | `[2, 12]` |
+| **+** | Operador: saca B=12, saca A=2 $\rightarrow$ Calcula `2 + 12 = 14` $\rightarrow$ Apilar 14 | `[14]` (Resultado Final) |
+
+---
+
+## 5. Casos de Prueba para Validación del Proyecto
+
+El programa completo se valida ejecutando las siguientes pruebas mínimas requeridas, comprobando que ambas capas coordinen los datos con éxito:
+
+| No. | Expresión Infija de Entrada | Expresión Posfija Resultante | Resultado Numérico Esperado |
+| :-: | :--- | :--- | :-: |
+| 1 | `2 + 3` | `23+` | **5** |
+| 2 | `2 + 3 * 4` | `234*+` | **14** |
+| 3 | `( 2 + 3 ) * 4` | `23+4*` | **20** |
+| 4 | `2 * ( 3 + 4 )` | `234+*` | **14** |
+| 5 | `( 2 + 3 ) * ( 4 - 5 )` | `23+45-*` | **-5** |
+| 6 | `2 + 3 * ( 4 - 5 )` | `2345-*+` | **-1** |
