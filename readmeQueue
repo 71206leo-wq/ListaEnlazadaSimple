@@ -1,0 +1,68 @@
+# Estructura de Datos: Queue (Cola) en Python
+
+Este repositorio contiene una implementación desde cero de una estructura de datos **Queue** (Cola) utilizando **Nodos (Listas Enlazadas)** en Python.
+
+## 1. ¿Cómo funciona esta estructura?
+
+Una **Queue** es una estructura de datos lineal que rige su comportamiento bajo el principio **FIFO** (*First-In, First-Out* / Primero en entrar, primero en salir). 
+
+A diferencia de las implementaciones basadas en listas nativas de Python (`arrays`), el uso de **Nodos** permite que las operaciones de inserción y eliminación se ejecuten en un tiempo constante **$O(1)$**, ya que no se requiere reindexar los elementos en memoria.
+
+Mapeo de punteros en la estructura:
+
+self.first (Frente)                                     self.last (Final)
+      |                                                       |
+      v                                                       v
+ +----------+      +----------+      +----------+      +----------+
+ | Node     |      | Node     |      | Node     |      | Node     |
+ |  data    | ---> |  data    | ---> |  data    | ---> |  data    | ---> None
+ |  next    |      |  next    |      |  next    |      |  next    |
+ +----------+      +----------+      +----------+      +----------+
+(Sale aquí)                                           (Entra aquí)
+
+---
+
+## 2. Métodos Implementados
+
+La clase `Queue` cuenta con los siguientes métodos para manipular y consultar la cola:
+
+### Gestión de Estado
+*   **`is_empty()`**: Devuelve `True` si la cola no tiene nodos (`self.first is None`), de lo contrario devuelve `False`.
+
+### Mutadores (Modifican la cola)
+*   **`enqueue(data)`**: Agrega un nuevo elemento al final de la cola. Si la cola está vacía, inicializa tanto `self.first` como `self.last` con este nuevo nodo.
+*   **`dequeue()`**: Remueve el nodo que está al frente de la cola (`self.first`) y devuelve su valor. Si la cola queda vacía tras la operación, formatea `self.last` a `None`. Si ya estaba vacía, retorna `None`.
+
+### Consultas (No modifican la cola)
+*   **`firstQueue()`**: Devuelve el valor del elemento que está al frente de la cola sin removerlo.
+*   **`lastQueue()`**: Devuelve el valor del último elemento agregado a la cola sin removerlo.
+
+### Visualización
+*   **`printQueue()`**: Imprime en consola si la cola está vacía o no, recorre dinámicamente los nodos y retorna una cadena de texto formateada que representa la cola de forma visual (ej. `Dato1->Dato2->`).
+
+---
+
+## 3. Ejemplo de Uso
+
+```python
+# Instanciación de la cola
+mi_cola = Queue()
+
+# Insertar elementos
+mi_cola.enqueue("A")
+mi_cola.enqueue("B")
+mi_cola.enqueue("C")
+
+# Imprimir estado actual
+print(mi_cola.printQueue()) 
+# Salida en consola: 
+# The queue is not empty
+# A->B->C->
+
+# Consultar extremos
+print("Frente:", mi_cola.firstQueue()) # Salida: Frente: A
+print("Final:", mi_cola.lastQueue())   # Salida: Final: C
+
+# Desencolar elementos (FIFO)
+print("Eliminado:", mi_cola.dequeue()) # Salida: Eliminado: A
+print(mi_cola.printQueue())            # Salida: B->C->

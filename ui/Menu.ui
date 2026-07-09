@@ -34,6 +34,7 @@
      <addaction name="actionLista_Enlazada"/>
      <addaction name="actionStack"/>
      <addaction name="actionAplicaciones"/>
+     <addaction name="actionQueue"/>
     </widget>
     <addaction name="menuLineales"/>
     <addaction name="separator"/>
@@ -95,6 +96,11 @@
   <action name="actionAplicaciones">
    <property name="text">
     <string>Aplicaciones</string>
+   </property>
+  </action>
+  <action name="actionQueue">
+   <property name="text">
+    <string>Queue</string>
    </property>
   </action>
  </widget>
