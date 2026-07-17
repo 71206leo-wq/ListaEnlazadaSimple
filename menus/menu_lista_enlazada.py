@@ -1,5 +1,6 @@
 from estructuras.lineales.lista_enlazada_simple import LinkedList
 from estructuras.lineales.queue import Queue
+from estructuras.lineales.banco import MenuBanco
 
 class MenuListaEnlazada(object):
         def __init__(self):
@@ -8,12 +9,14 @@ class MenuListaEnlazada(object):
 
         def mostrar_menu_principal(self):
             while True:
-                seleccion = input("Seleccione una opción:(Menu lista enlazada (1), Menu cola (2), Salir (3)): ")
+                seleccion = input("Seleccione una opción:(Menu lista enlazada (1), Menu cola (2), Menu banco (3)): ")
                 if seleccion == "1":
                     self.mostrar_menu_lista_enlazada()
                 elif seleccion == "2":
                     self.mostrar_menu_queue()
                 elif seleccion == "3":
+                    self.mostrar_menu_banco()
+                elif seleccion == "4":
                     print("Saliendo del programa...")
                     break
                 else:
@@ -108,8 +111,7 @@ class MenuListaEnlazada(object):
                 elemento = self.queue.printQueue()
                 print(f"Elementos en la cola: {elemento}")
         
-        
-    
+
         
     
 

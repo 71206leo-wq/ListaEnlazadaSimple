@@ -42,15 +42,23 @@ class Queue:
             return self.last.data
         
     def printQueue(self):
-        temp = self.first
-        mensaje=""
-        if temp is None:
-            print("The queue is empty")
-            return
-        else:
-            print("The queue is not empty")
-            while temp is not None:
-                mensaje += temp.data + "->"
-                temp = temp.next
-        return mensaje
+            temp = self.first
+            mensaje = ""
+            if temp is None:
+                print("La cola está vacía.")
+                return mensaje
+            else:
+                while temp is not None:
+                    # Formateamos el cliente para mostrarlo visualmente en la cola
+                    mensaje += f"[Turno {temp.data['turno']}]"
+                    if temp.next is not None:
+                        mensaje += " -> "
+                    temp = temp.next
+                print(mensaje)
+                return mensaje
+            
+    
+    
+    
+    
     

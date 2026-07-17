@@ -4,6 +4,7 @@ from load.load_lista_enlazada_simple import LoadListaEnlazadaSimple
 from load.load_stack import LoadStack
 from load.load_aplicaciones import LoadAplicaciones
 from load.load_queue import LoadQueue
+from load.load_banco import LoadBanco
 
 
 class LoadMenu(QMainWindow):
@@ -16,7 +17,7 @@ class LoadMenu(QMainWindow):
         self.actionStack.triggered.connect(self.load_stack)
         self.actionAplicaciones.triggered.connect(self.load_aplicaciones)
         self.actionQueue.triggered.connect(self.load_queue)
-        
+        self.actionBanco.triggered.connect(self.load_banco)
         
         
 
@@ -36,3 +37,6 @@ class LoadMenu(QMainWindow):
         queue = LoadQueue()
         queue.exec_()
     
+    def load_banco(self):
+        banco = LoadBanco()
+        banco.exec_()

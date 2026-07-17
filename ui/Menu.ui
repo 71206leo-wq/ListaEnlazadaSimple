@@ -35,6 +35,7 @@
      <addaction name="actionStack"/>
      <addaction name="actionAplicaciones"/>
      <addaction name="actionQueue"/>
+     <addaction name="actionBanco"/>
     </widget>
     <addaction name="menuLineales"/>
     <addaction name="separator"/>
@@ -101,6 +102,11 @@
   <action name="actionQueue">
    <property name="text">
     <string>Queue</string>
+   </property>
+  </action>
+  <action name="actionBanco">
+   <property name="text">
+    <string>Banco</string>
    </property>
   </action>
  </widget>
