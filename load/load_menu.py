@@ -5,6 +5,7 @@ from load.load_stack import LoadStack
 from load.load_aplicaciones import LoadAplicaciones
 from load.load_queue import LoadQueue
 from load.load_banco import LoadBanco
+from load.load_gestion_impresion import LoadGestionImpresion
 
 
 class LoadMenu(QMainWindow):
@@ -18,7 +19,7 @@ class LoadMenu(QMainWindow):
         self.actionAplicaciones.triggered.connect(self.load_aplicaciones)
         self.actionQueue.triggered.connect(self.load_queue)
         self.actionBanco.triggered.connect(self.load_banco)
-        
+        self.actionGestion_Impresion.triggered.connect(self.load_gestion_impresion)
         
 
     def load_lista_enlazada(self):
@@ -40,3 +41,9 @@ class LoadMenu(QMainWindow):
     def load_banco(self):
         banco = LoadBanco()
         banco.exec_()
+        
+    def load_gestion_impresion(self):
+        gestion_impresion = LoadGestionImpresion()
+        gestion_impresion.exec_()
+        
+        

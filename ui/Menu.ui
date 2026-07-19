@@ -36,6 +36,7 @@
      <addaction name="actionAplicaciones"/>
      <addaction name="actionQueue"/>
      <addaction name="actionBanco"/>
+     <addaction name="actionGestion_Impresion"/>
     </widget>
     <addaction name="menuLineales"/>
     <addaction name="separator"/>
@@ -107,6 +108,11 @@
   <action name="actionBanco">
    <property name="text">
     <string>Banco</string>
+   </property>
+  </action>
+  <action name="actionGestion_Impresion">
+   <property name="text">
+    <string>Gestion Impresion</string>
    </property>
   </action>
  </widget>
