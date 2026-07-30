@@ -38,9 +38,17 @@
      <addaction name="actionBanco"/>
      <addaction name="actionGestion_Impresion"/>
     </widget>
+    <widget class="QMenu" name="menuNo_Lineales">
+     <property name="title">
+      <string>No Lineales</string>
+     </property>
+     <addaction name="actionArbol_expresiones"/>
+    </widget>
     <addaction name="menuLineales"/>
     <addaction name="separator"/>
-    <addaction name="actionSalir"/>
+    <addaction name="menuNo_Lineales"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir_2"/>
    </widget>
    <addaction name="menuEstructuras"/>
   </widget>
@@ -113,6 +121,16 @@
   <action name="actionGestion_Impresion">
    <property name="text">
     <string>Gestion Impresion</string>
+   </property>
+  </action>
+  <action name="actionSalir_2">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionArbol_expresiones">
+   <property name="text">
+    <string>Arbol expresiones</string>
    </property>
   </action>
  </widget>
