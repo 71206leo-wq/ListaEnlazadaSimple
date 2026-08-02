@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QDialog, QApplication, QMessageBox, QGraphicsScene 
+from PyQt5.QtWidgets import QMainWindow, QDialog, QApplication, QMessageBox, QGraphicsScene, QWidget
 from PyQt5 import uic
 from load.load_lista_enlazada_simple import LoadListaEnlazadaSimple
 from load.load_stack import LoadStack
@@ -7,6 +7,7 @@ from load.load_queue import LoadQueue
 from load.load_banco import LoadBanco
 from load.load_gestion_impresion import LoadGestionImpresion
 from load.load_arbol import ExpressionTreeWindow
+from load.load_graph import LoadGraph
 
 
 class LoadMenu(QMainWindow):
@@ -22,6 +23,7 @@ class LoadMenu(QMainWindow):
         self.actionBanco.triggered.connect(self.load_banco)
         self.actionGestion_Impresion.triggered.connect(self.load_gestion_impresion)
         self.actionArbol_expresiones.triggered.connect(self.load_arbol)
+        self.actionGrafo.triggered.connect(self.load_graph)
 
     def load_lista_enlazada(self):
         lista_enlazada = LoadListaEnlazadaSimple()
@@ -51,4 +53,6 @@ class LoadMenu(QMainWindow):
         self.arbol = ExpressionTreeWindow()
         self.arbol.show()
         
-        
+    def load_graph(self):
+        self.graph = LoadGraph()
+        self.graph.show()   

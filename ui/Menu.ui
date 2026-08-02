@@ -43,6 +43,7 @@
       <string>No Lineales</string>
      </property>
      <addaction name="actionArbol_expresiones"/>
+     <addaction name="actionGrafo"/>
     </widget>
     <addaction name="menuLineales"/>
     <addaction name="separator"/>
@@ -131,6 +132,11 @@
   <action name="actionArbol_expresiones">
    <property name="text">
     <string>Arbol expresiones</string>
+   </property>
+  </action>
+  <action name="actionGrafo">
+   <property name="text">
+    <string>Grafo</string>
    </property>
   </action>
  </widget>
